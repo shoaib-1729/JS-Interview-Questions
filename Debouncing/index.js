@@ -3,18 +3,24 @@ const inputElement = document.querySelector("input")
 
 
 // ek dusra function define karuga joh handleInout function ko kuch delay k baad call karega
-// ye function woh callback function aur delay receive karega as an argument aur us callback function ko us particular delay k baad call karwayega.
-const debounce = function(func, wait) {
-        return function(e) {
-            // delay laga do
-            setTimeout(() => {
+const handleInput = (e) => {
+        console.log("Calling API: ", e.target.value)
+    }
+    // ye function woh callback function aur delay receive karega as an argument aur us callback function ko us particular delay k baad call karwayega.
+const debounce = function(callBackFunc, wait) {
+        let timerId;
+        return function(...args) {
+            // pehle pichle wale timer ko clear kardo, agar user se wait se pehle type kara toh pehle wale cycle ka setTimeout ID remove kardo, taaki pehle wale ka console log naa dikhe.
+            clearTimeout(timerId)
+                // delay laga do
+            timerId = setTimeout(() => {
                 // ab yaha us function ko call karwa do.
-                func(e)
+                callBackFunc(...args)
             }, wait)
         }
     }
     // function
-const debouncedFunc = debounce()
+const debouncedFunc = debounce(handleInput, 1000)
 
 // add event listener
 inputElement.addEventListener("input", debouncedFunc)
