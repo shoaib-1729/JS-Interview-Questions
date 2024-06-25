@@ -35,6 +35,6 @@ function memoizedSquare() {
 
 const func = memoizedSquare()
     // value will be calculated during the first call and stored inside the cache
-console.log(func(5));
-// if, the function is called again with the same argument, then the value os returned directly from cache, hence a better optimized version than the previous square function.
-console.log(func(5));
+    // console.log(func(5));
+    // if, the function is called again with the same argument, then the value os returned directly from cache, hence a better optimized version than the previous square function.
+    // console.log(func(5));
